@@ -1,0 +1,37 @@
+{
+  "name": "rx-streaming-views",
+  "author": "Seth House <seth@eseth.com> (http://eseth.org)",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "description": "A full-featured Flux implementation using RxJS",
+  "private": false,
+  "keywords": [
+    "Rx",
+    "RxJS",
+    "Flux"
+  ],
+  "main": "lib/src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whiteinge/rx-streaming-views.git"
+  },
+  "homepage": "https://github.com/whiteinge/rx-streaming-views#readme",
+  "dependencies": {
+  },
+  "optionalDependencies": {},
+  "devDependencies": {
+    "rx-collectionassert": "~1.0.0",
+    "tape": "~4.6.0",
+    "typescript": "~2.0.3"
+  },
+  "scripts": {
+    "test": "tape ./lib/tests/**/*.js",
+    "build": "tsc --allowJs -m commonjs --outDir lib src/* tests/* perf/*",
+    "preversion": "npm run build",
+    "pretest": "npm run build",
+    "preperf": "npm run build"
+  },
+  "bugs": {
+    "url": "https://github.com/whiteinge/rx-streaming-views/issues"
+  }
+}
