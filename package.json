@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/whiteinge/rx-streaming-views#readme",
   "dependencies": {
+    "rx": "4.x.x",
+    "rx-bytag": "1.0.x",
+    "toposort": "1.0.x"
   },
   "optionalDependencies": {},
   "devDependencies": {
