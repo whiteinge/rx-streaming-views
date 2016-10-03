@@ -6,6 +6,9 @@ Rx.Observable.prototype.byTag = byTag;
 import * as bareConstants from './constants';
 import {applyMiddleware} from './middleware';
 
+export {applyMiddleware} from './middleware';
+export {collectRoutes, makeRouter} from './router';
+
 var mtag = (...args1) => (...args2) => (...args3) =>
     args1.concat(args2, args3).join('/');
 
