@@ -1,8 +1,8 @@
-var at = require('lodash/at');
-var isArray = require('lodash/isArray');
-var isFunction = require('lodash/isFunction');
+import * as at from 'lodash/at';
+import * as isArray from 'lodash/isArray';
+import * as isFunction from 'lodash/isFunction';
 
-var toposort = require('toposort');
+import * as toposort from 'toposort';
 
 import * as C from './constants';
 

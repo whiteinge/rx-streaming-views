@@ -1,10 +1,10 @@
-var test = require('tape');
-var Rx = require('rx'),
-    ReactiveTest = Rx.ReactiveTest;
-var collectionAssert = require('rx-collectionassert');
-var _ = require('lodash');
+import * as Rx from 'rx';
+import * as _ from 'lodash';
+import * as test from 'tape';
 
-import getRSV from '../src';
+import {getRSV} from '../src';
+
+var ReactiveTest = Rx.ReactiveTest;
 
 test('Dispatcher send', function(assert) {
     var {Dispatcher, send} = getRSV({appID: 'myapp'});

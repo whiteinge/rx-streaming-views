@@ -1,4 +1,4 @@
-var Rx = require('rx');
+import * as Rx from 'rx';
 
 import {byTag, sendAction} from 'rx-bytag';
 Rx.Observable.prototype.byTag = byTag;
@@ -18,7 +18,7 @@ Usage:
 
     var {Dispatcher, send} = myapp;
 **/
-export default function getRSV(config = {}) {
+export function getRSV(config = {}) {
     var {appID} = config;
 
     var tag = mtag(appID);

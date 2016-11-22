@@ -1,8 +1,9 @@
-var test = require('tape');
-var Rx = require('rx'),
-    ReactiveTest = Rx.ReactiveTest;
-var collectionAssert = require('rx-collectionassert');
-var _ = require('lodash');
+import * as Rx from 'rx';
+import * as _ from 'lodash';
+import * as collectionAssert from 'rx-collectionassert';
+import * as test from 'tape';
+
+var ReactiveTest = Rx.ReactiveTest;
 
 import * as C from '../src/constants';
 

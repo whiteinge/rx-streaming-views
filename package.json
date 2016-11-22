@@ -10,7 +10,7 @@
     "RxJS",
     "Flux"
   ],
-  "main": "lib/src/index.js",
+  "main": "dist/src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/whiteinge/rx-streaming-views.git"
@@ -23,20 +23,29 @@
   },
   "optionalDependencies": {},
   "devDependencies": {
-    "benchmark": "~2.1.1",
-    "rx-collectionassert": "~1.0.0",
-    "tape": "~4.6.0",
-    "typescript": "~2.0.3"
-  },
-  "scripts": {
-    "test": "tape ./lib/tests/**/*.js",
-    "build": "tsc --allowJs -m commonjs --outDir lib src/* tests/* perf/*",
-    "perf": "node ./lib/perf/middlewareComp.js",
-    "preversion": "npm run build",
-    "pretest": "npm run build",
-    "preperf": "npm run build"
+    "benchmark": "2.1.x",
+    "rx-collectionassert": "1.0.x",
+    "shx": "0.2.x",
+    "tap-spec": "4.1.1",
+    "tape": "4.6.x",
+    "ts-lint": "4.5.1",
+    "ts-node": "3.0.x",
+    "typescript": "2.x.x"
   },
   "bugs": {
     "url": "https://github.com/whiteinge/rx-streaming-views/issues"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production npm -s run build:tsc",
+    "build:tsc": "tsc --allowJs -t es5 -m commonjs --outDir dist src/* tests/* perf/*",
+    "install:basedirs": "shx mkdir -p dist src tests",
+    "install:basefiles": "shx touch src/index.js tests/index.js",
+    "postinstall": "npm run -s install:basedirs; npm run -s install:basefiles",
+    "preversion": "npm run build",
+    "test": "npm -s run test:suite || EXIT=$?; npm -s run test:lint || EXIT=$?; exit ${EXIT:-0}",
+    "test:lint": "tslint 'src/**/*.js' 'src/**/*.ts'",
+    "test:perf": "node ./dist/perf/middlewareComp.js",
+    "test:suite": "npm run -s test:tape -- tests/**/*.js | tap-spec",
+    "test:tape": "ts-node -D -F -O '{\"allowJs\": true}' node_modules/tape/bin/tape"
   }
 }
