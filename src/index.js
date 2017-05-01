@@ -38,7 +38,8 @@ export function getRSV(config = {}) {
         .publish(applyMiddleware(C))
         .share();
 
-    var register = modConf => send(tag(modConf.modID)('register', 'new'))(modConf);
+    var register = modConf =>
+        send(tag(modConf.modID)('register', 'new'))(modConf);
 
     function getLogger(name) {
         var logger = (level, message) =>
