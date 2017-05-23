@@ -1,8 +1,8 @@
-var at = require('lodash/at');
-var isArray = require('lodash/isArray');
-var isFunction = require('lodash/isFunction');
+import * as at from 'lodash/at';
+import * as isArray from 'lodash/isArray';
+import * as isFunction from 'lodash/isFunction';
 
-var toposort = require('toposort');
+import * as toposort from 'toposort';
 
 import * as C from './constants';
 
@@ -53,7 +53,8 @@ export function applyMiddleware(C) {
             .filter(isRegisterMiddleware)
             .withLatestFrom(middleware, function(evt, mw) {
                 var mwArray = mw.map(x => x.fn);
-                return mwArray.reduce((acc, cur) => acc.let(cur), o).startWith(evt);
+                return mwArray.reduce((acc, cur) =>
+                    acc.let(cur), o).startWith(evt);
             })
             .startWith(o.filter(x => !isRegisterMiddleware(x)))
             .switch();
@@ -72,12 +73,16 @@ Add or remove middleware to an accumulation dictionary
 The returned objects are in form:
 
     {
-        mw: Object // the individual middleware functions, namespaced by module ID and middleware name, and associated module data.
+        mw: Object // the individual middleware functions, namespaced by module
+            ID and middleware name, and associated module data.
         mw.modID: string // the module ID this middleware is from.
         mw.name: string // the middleware name
         mw.fn: function // the middleware
-        mw.before: Array // reverse dependencies; this function should run before the listed middleware (should be added as a dependency to them).
-        mw.after: Array // dependencies; this function should run after the listed middleware.
+        mw.before: Array // reverse dependencies; this function should run
+            before the listed middleware (should be added as a dependency to
+            them).
+        mw.after: Array // dependencies; this function should run after the
+            listed middleware.
     }
 
 Out: ...{mwID: {name, modID, fn, [before], [after]}}

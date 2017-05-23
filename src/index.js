@@ -1,10 +1,13 @@
-var Rx = require('rx');
+import * as Rx from 'rx';
 
 import {byTag, sendAction} from 'rx-bytag';
 Rx.Observable.prototype.byTag = byTag;
 
 import * as bareConstants from './constants';
 import {applyMiddleware} from './middleware';
+
+export {applyMiddleware} from './middleware';
+export {collectRoutes, makeRouter} from './router';
 
 var mtag = (...args1) => (...args2) => (...args3) =>
     args1.concat(args2, args3).join('/');
@@ -18,7 +21,7 @@ Usage:
 
     var {Dispatcher, send} = myapp;
 **/
-export default function getRSV(config = {}) {
+export function getRSV(config = {}) {
     var {appID} = config;
 
     var tag = mtag(appID);
@@ -38,7 +41,8 @@ export default function getRSV(config = {}) {
         .publish(applyMiddleware(C))
         .share();
 
-    var register = modConf => send(tag(modConf.modID)('register', 'new'))(modConf);
+    var register = modConf =>
+        send(tag(modConf.modID)('register', 'new'))(modConf);
 
     function getLogger(name) {
         var logger = (level, message) =>
